@@ -49,7 +49,6 @@ const feeds = createSubStore({}, (builder) => {
 });
 
 export const store = createStore({ feeds });
-store.setLogLevel("error");
 
 export type AppStore = typeof store;
 

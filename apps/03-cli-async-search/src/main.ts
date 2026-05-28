@@ -46,7 +46,6 @@ const search = createSubStore({}, (builder) => {
 });
 
 const store = createStore({ search });
-store.setLogLevel("error");
 
 const query = process.argv.slice(2).join(" ").trim() || "substate";
 const flow = store.search.runSearch();

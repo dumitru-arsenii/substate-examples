@@ -50,7 +50,6 @@ const tasks = createSubStore({}, (builder) => {
 });
 
 const store = createStore({ tasks });
-store.setLogLevel("error");
 
 const [command = "list", ...args] = process.argv.slice(2);
 

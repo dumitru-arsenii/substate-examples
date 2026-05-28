@@ -1,6 +1,6 @@
 {
   "name": "06-react-live-feed",
-  "version": "0.1.0",
+  "version": "0.0.2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,11 +9,10 @@
     "typecheck": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@substate/core": "^0.0.1",
-    "@substate/react": "^0.0.1",
+    "@substate/core": "^0.0.3",
+    "@substate/react": "^0.0.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "rxjs": "^7.8.1"
   }
 }
-

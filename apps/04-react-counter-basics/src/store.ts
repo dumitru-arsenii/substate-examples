@@ -16,7 +16,6 @@ const counter = createSubStore({}, (builder) => {
 });
 
 export const store = createStore({ counter });
-store.setLogLevel("error");
 
 export type AppStore = typeof store;
 

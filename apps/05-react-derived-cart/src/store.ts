@@ -37,8 +37,12 @@ const cart = createSubStore({}, (builder) => {
   return { setItems, subtotal, tax, total };
 });
 
-export const store = createStore({ cart });
-store.setLogLevel("error");
+export const store = createStore({ cart }, {
+  cart: {
+    setItems: { items: [{ id: "starter", name: "Starter kit", price: 29, quantity: 1 }] },
+    subtotal: { value: 12 }
+  }
+});
 
 export type AppStore = typeof store;
 

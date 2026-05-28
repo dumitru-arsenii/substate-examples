@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import type { CartItem } from "./store";
 import { useSubstate } from "./store";
 
@@ -7,10 +6,6 @@ const catalog = [
   { id: "team", name: "Team add-on", price: 49 },
   { id: "support", name: "Priority support", price: 19 },
 ] satisfies Array<Omit<CartItem, "quantity">>;
-
-const initialItems: CartItem[] = [
-  { id: "starter", name: "Starter kit", price: 29, quantity: 1 },
-];
 
 const currency = new Intl.NumberFormat("en-US", {
   currency: "USD",
@@ -22,10 +17,6 @@ export function App() {
   const [subtotal] = useSubstate((store) => store.cart.subtotal());
   const [tax] = useSubstate((store) => store.cart.tax());
   const [total] = useSubstate((store) => store.cart.total());
-
-  useEffect(() => {
-    void setItems({ items: initialItems });
-  }, [setItems]);
 
   async function addItem(item: Omit<CartItem, "quantity">) {
     const items = cart?.items ?? [];
