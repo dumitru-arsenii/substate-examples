@@ -1,4 +1,4 @@
-import { createCascadeStore, createCascadeSubStore } from "@substate/core";
+import { createStore, createSubStore } from "@substate/core";
 
 type Task = {
   id: number;
@@ -6,7 +6,7 @@ type Task = {
   done: boolean;
 };
 
-const tasks = createCascadeSubStore({}, (builder) => {
+const tasks = createSubStore({}, (builder) => {
   const seed = builder.mutation(async (args: { tasks: Task[] }) => ({
     tasks: args.tasks,
   }));
@@ -49,7 +49,7 @@ const tasks = createCascadeSubStore({}, (builder) => {
   return { seed, add, complete, activeTasks, summary };
 });
 
-const store = createCascadeStore({ tasks });
+const store = createStore({ tasks });
 store.setLogLevel("error");
 
 const [command = "list", ...args] = process.argv.slice(2);

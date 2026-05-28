@@ -1,4 +1,4 @@
-import { createCascadeStore, createCascadeSubStore } from "@substate/core";
+import { createStore, createSubStore } from "@substate/core";
 import { createSubstateReact } from "@substate/react";
 
 export type CartItem = {
@@ -8,7 +8,7 @@ export type CartItem = {
   price: number;
 };
 
-const cart = createCascadeSubStore({}, (builder) => {
+const cart = createSubStore({}, (builder) => {
   const setItems = builder.mutation(async (args: { items: CartItem[] }) => ({
     items: args.items,
   }));
@@ -37,7 +37,7 @@ const cart = createCascadeSubStore({}, (builder) => {
   return { setItems, subtotal, tax, total };
 });
 
-export const store = createCascadeStore({ cart });
+export const store = createStore({ cart });
 store.setLogLevel("error");
 
 export type AppStore = typeof store;

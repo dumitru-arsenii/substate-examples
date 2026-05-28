@@ -1,7 +1,7 @@
-import { createCascadeStore, createCascadeSubStore } from "@substate/core";
+import { createStore, createSubStore } from "@substate/core";
 import { createSubstateReact } from "@substate/react";
 
-const counter = createCascadeSubStore({}, (builder) => {
+const counter = createSubStore({}, (builder) => {
   const setCount = builder.mutation(async (args: { value: number }) => ({
     value: args.value,
   }));
@@ -15,7 +15,7 @@ const counter = createCascadeSubStore({}, (builder) => {
   return { setCount, doubled };
 });
 
-export const store = createCascadeStore({ counter });
+export const store = createStore({ counter });
 store.setLogLevel("error");
 
 export type AppStore = typeof store;

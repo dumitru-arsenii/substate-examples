@@ -19,22 +19,13 @@ const currency = new Intl.NumberFormat("en-US", {
 
 export function App() {
   const [cart, setItems] = useSubstate((store) => store.cart.setItems());
-  const [subtotal, resolveSubtotal] = useSubstate((store) =>
-    store.cart.subtotal(),
-  );
-  const [tax, resolveTax] = useSubstate((store) => store.cart.tax());
-  const [total, resolveTotal] = useSubstate((store) => store.cart.total());
+  const [subtotal] = useSubstate((store) => store.cart.subtotal());
+  const [tax] = useSubstate((store) => store.cart.tax());
+  const [total] = useSubstate((store) => store.cart.total());
 
   useEffect(() => {
-    void updateCart(initialItems);
-  }, []);
-
-  async function updateCart(items: CartItem[]) {
-    await setItems({ items });
-    await resolveSubtotal();
-    await resolveTax();
-    await resolveTotal();
-  }
+    void setItems({ items: initialItems });
+  }, [setItems]);
 
   async function addItem(item: Omit<CartItem, "quantity">) {
     const items = cart?.items ?? [];
@@ -47,7 +38,7 @@ export function App() {
         )
       : [...items, { ...item, quantity: 1 }];
 
-    await updateCart(next);
+    await setItems({ items: next });
   }
 
   async function removeItem(id: string) {
@@ -58,7 +49,7 @@ export function App() {
       )
       .filter((item) => item.quantity > 0);
 
-    await updateCart(next);
+    await setItems({ items: next });
   }
 
   return (
@@ -109,4 +100,3 @@ export function App() {
     </main>
   );
 }
-

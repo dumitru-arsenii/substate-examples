@@ -1,4 +1,4 @@
-import { createCascadeStore, createCascadeSubStore } from "@substate/core";
+import { createStore, createSubStore } from "@substate/core";
 import { createSubstateReact } from "@substate/react";
 import { Observable } from "rxjs";
 
@@ -17,7 +17,7 @@ const messages = [
   "Background job queued",
 ];
 
-const feeds = createCascadeSubStore({}, (builder) => {
+const feeds = createSubStore({}, (builder) => {
   const live = builder.subscription((args: { channel: string }) => {
     return new Observable<FeedEvent>((subscriber) => {
       let sequence = 1;
@@ -48,7 +48,7 @@ const feeds = createCascadeSubStore({}, (builder) => {
   return { live };
 });
 
-export const store = createCascadeStore({ feeds });
+export const store = createStore({ feeds });
 store.setLogLevel("error");
 
 export type AppStore = typeof store;

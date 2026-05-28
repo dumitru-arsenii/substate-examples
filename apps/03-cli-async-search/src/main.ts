@@ -1,4 +1,4 @@
-import { createCascadeStore, createCascadeSubStore } from "@substate/core";
+import { createStore, createSubStore } from "@substate/core";
 
 type SearchHit = {
   title: string;
@@ -15,7 +15,7 @@ const catalog: SearchHit[] = [
 const wait = (milliseconds: number) =>
   new Promise((resolve) => setTimeout(resolve, milliseconds));
 
-const search = createCascadeSubStore({}, (builder) => {
+const search = createSubStore({}, (builder) => {
   const runSearch = builder.mutation(async (args: { query: string }) => {
     await wait(250);
 
@@ -45,7 +45,7 @@ const search = createCascadeSubStore({}, (builder) => {
   return { runSearch, summary };
 });
 
-const store = createCascadeStore({ search });
+const store = createStore({ search });
 store.setLogLevel("error");
 
 const query = process.argv.slice(2).join(" ").trim() || "substate";

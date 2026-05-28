@@ -1,4 +1,4 @@
-import { createCascadeStore, createCascadeSubStore } from "@substate/core";
+import { createStore, createSubStore } from "@substate/core";
 
 type LineItem = {
   name: string;
@@ -6,7 +6,7 @@ type LineItem = {
   price: number;
 };
 
-const invoices = createCascadeSubStore({}, (builder) => {
+const invoices = createSubStore({}, (builder) => {
   const setLines = builder.mutation(async (args: { lines: LineItem[] }) => ({
     lines: args.lines,
   }));
@@ -35,7 +35,7 @@ const invoices = createCascadeSubStore({}, (builder) => {
   return { setLines, subtotal, discount, total };
 });
 
-const store = createCascadeStore({ invoices });
+const store = createStore({ invoices });
 store.setLogLevel("error");
 
 await store.invoices.setLines().run({
