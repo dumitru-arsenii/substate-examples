@@ -1,0 +1,26 @@
+{
+  "name": "substate-examples",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Focused examples for when to use Substate in Node.js, CLIs, and React apps.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.0"
+  }
+}
