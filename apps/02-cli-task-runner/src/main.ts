@@ -82,8 +82,8 @@ if (command === "complete") {
   await store.tasks.seed().run(result);
 }
 
-const activeTasks = await store.tasks.activeTasks().resolve();
-const summary = await store.tasks.summary().resolve();
+const activeTasks = store.tasks.activeTasks().value();
+const summary = store.tasks.summary().value();
 
 console.log("Tasks");
 console.log("-----");

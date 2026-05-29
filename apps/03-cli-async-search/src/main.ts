@@ -54,7 +54,7 @@ console.log(`Searching for "${query}"...`);
 
 try {
   const result = await flow.run({ query });
-  const summary = await store.search.summary().resolve();
+  const summary = store.search.summary().value();
 
   console.log(summary.label);
   for (const hit of result.hits) {

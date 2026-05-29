@@ -1,5 +1,4 @@
 import { createStore, createSubStore } from "@substate/core";
-import { firstValueFrom } from "rxjs";
 
 type LineItem = {
   name: string;
@@ -45,9 +44,9 @@ await store.invoices.setLines().run({
   ],
 });
 
-const subtotal = await firstValueFrom(store.invoices.subtotal().data());
-const discount = await firstValueFrom(store.invoices.discount().data());
-const total = await firstValueFrom(store.invoices.total().data());
+const subtotal = store.invoices.subtotal().value();
+const discount = store.invoices.discount().value();
+const total = store.invoices.total().value();
 
 console.log("Invoice");
 console.log("-------");
